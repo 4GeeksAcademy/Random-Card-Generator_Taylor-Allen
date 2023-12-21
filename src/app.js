@@ -31,23 +31,32 @@ let generateRandomSuit = () => {
   return suit[indexSuit];
 };
 
-window.onload = () => {
+let generateCard = () => {
   const cardElement = document.querySelector(".card");
 
   if (cardElement) {
     const randomSuit = generateRandomSuit();
     const randomNumber = generateRandomNumber();
 
-    // Replace spaces with underscores in the class name
-    const sanitizedClass = randomSuit.replace(/\s/g, "_");
+    // Remove previous suit class
+    cardElement.classList.remove("diamond", "spade", "heart", "club");
 
-    cardElement.classList.add(sanitizedClass);
+    // Add new suit class
+    cardElement.classList.add(randomSuit);
+
     cardElement.innerHTML = randomNumber;
   } else {
     console.error("Element with class 'card' not found.");
   }
+};
+
+window.onload = () => {
+  // Initial card generation
+  generateCard();
+
+  // Add click event listener to the button
   document.querySelector("#btn").addEventListener("click", () => {
-    return generateRandomNumber;
-    return generateRandomSuit;
+    // Generate a new card on button click
+    generateCard();
   });
 };
