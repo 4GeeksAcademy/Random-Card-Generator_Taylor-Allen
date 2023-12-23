@@ -3,6 +3,8 @@ body {
   background-image: url(https://images.unsplash.com/photo-1542145177-4dc9b8029711?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 
 .card {
@@ -41,8 +43,8 @@ body {
   &.club::after {
     content: "\2663";
   }
-  &.heart:before,
-  &.heart::after {
+  &.heart2:before,
+  &.heart2::after {
     content: "\2665";
     color: red;
   }
@@ -51,6 +53,14 @@ body {
     content: "\2666";
     color: red;
   }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100px;
 }
 
 button {
@@ -79,4 +89,118 @@ button:active {
   background-color: #3e8e41;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transform: translateY(4px);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+/* html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbf8f1;
+  font-family: "Pacifico", serif;
+  overflow: hidden;
+} */
+
+span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  height: 100px;
+}
+
+span::after {
+  content: attr(data-text);
+  position: absolute;
+  background-color: #fc4f4f;
+  border-radius: 10px;
+  padding: 6px 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #fff;
+  user-select: none;
+  box-shadow: 0 7px 15px -1px #ccc;
+  transition: transform 100ms ease-in;
+}
+
+span:active::after {
+  transform: scale(0.9);
+}
+
+.pumping::after {
+  animation: pumping 100ms ease-in-out infinite;
+}
+
+@keyframes pumping {
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+.shape {
+  --size: 8px;
+  position: absolute;
+  top: calc(50% - var(--size));
+  left: calc(50% - var(--size));
+  width: calc(var(--size) * 2);
+  height: calc(var(--size) * 2);
+  animation: popup var(--d) cubic-bezier(0.08, 0.56, 0.53, 0.98) forwards;
+}
+
+/* .square {
+  border-radius: 4px;
+  background-color: var(--c);
+} */
+
+/* .circle {
+  border-radius: 50%;
+  background-color: var(--c);
+}
+
+.triangle {
+  width: 0px;
+  height: 0px;
+  background-color: none;
+  border-top: var(--size) solid transparent;
+  border-bottom: calc(var(--size) * 2) solid var(--c);
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+} */
+
+.heart {
+  --size: 6px;
+  background-color: var(--c);
+}
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--c);
+  border-radius: 50%;
+}
+.heart::before {
+  left: -50%;
+}
+.heart::after {
+  top: -50%;
+}
+
+@keyframes popup {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) rotate(var(--r));
+  }
 }
